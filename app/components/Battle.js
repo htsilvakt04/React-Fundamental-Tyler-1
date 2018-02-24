@@ -1,53 +1,55 @@
 let React = require('react');
-
-class BattleForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            textValue: ''
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
-    handleChange (event) {
-        let value = event.target.value;
-        this.setState({
-            textValue: value
-        });
-    }
-    render () {
-        const id = this.props.id;
-        const textValue = this.state.textValue;
-        return (
-            <form onSubmit={this.props.onSubmit.bind(null, [id, textValue])}>
-                <input type="text" value={this.state.textValue} onChange={this.handleChange} />
-                <button type="submit">Submit</button>
-            </form>
-        )
-    }
-}
+let PropTypes = require('prop-types');
+let BattleForm = require('./BattleForm');
+let api = require('../utils/api');
+let PlayerReview = require('./PlayerReview');
 
 class Battle extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            player1Text: '',
-            player2Text: ''
+            playerOneName: '',
+            playerOneImg: null,
+            playerTwoName: '',
+            playerTwoImg: null
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
-    handleSubmit (data, event) {
-        event.preventDefault();
-        let textValue = data[1];
-        data[0] === 'player-1'
-            ? this.setState({player1Text: textValue})
-            : this.setState({player2Text: textValue});
+    handleReset () {
+        console.log('handle reset function');
+    }
+    handleSubmit (id, username) {
+        this.setState(() => {
+            let newState = {};
+            newState[id + 'Name'] = username;
+            newState[id + 'Img'] = 'https://github.com/' + username + '.png?size=200';
+            return newState;
+        });
+    }
 
-    }
     render () {
+        let playerOneName = this.state.playerOneName;
+        let playerOneImg = this.state.playerOneImg;
+
+        let playerTwoName = this.state.playerTwoName;
+        let playerTwoImg = this.state.playerTwoImg;
+
         return (
             <div>
-                <BattleForm id='player-1' onSubmit={this.handleSubmit}/>
-                <BattleForm id='player-2' onSubmit={this.handleSubmit}/>
+                <div className='row'>
+                    {!playerOneName &&
+                        <BattleForm id='playerOne' label='Player One' onSubmit={this.handleSubmit}/>}
+                    {playerOneImg !== null &&
+                        <PlayerReview id={'playerOne'} avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} />
+                    }
+
+                    {!playerTwoName &&
+                        <BattleForm id='playerTwo' label='Player Two' onSubmit={this.handleSubmit}/>}
+                    {playerTwoImg !== null &&
+                    <PlayerReview id={'playerTwo'} avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} />
+                    }
+                </div>
             </div>
         );
     }
