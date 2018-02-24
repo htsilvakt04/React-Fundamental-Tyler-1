@@ -1,0 +1,32 @@
+let React = require('react');
+let Popular = require('./Popular');
+let ReactRouter = require('react-router-dom');
+let Router = ReactRouter.BrowserRouter;
+let Route = ReactRouter.Route;
+let Home = require('./Home');
+let Navbar = require('./Nav');
+let Battle = require('./Battle');
+let Switch = ReactRouter.Switch;
+
+
+class App extends React.Component {
+    render () {
+        return (
+            <Router>
+                <div className='container'>
+                    <Navbar/>
+                    <Switch>
+                        <Route path='/' exact component={Home}/>
+                        <Route path='/popular' component={Popular}/>
+                        <Route exact path='/battle' component={Battle}/>
+                        <Route render={function () {
+                            return <h1>404</h1>;
+                        }}/>
+                    </Switch>
+                </div>
+            </Router>
+        );
+    }
+}
+
+module.exports = App;

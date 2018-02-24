@@ -1,49 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+let React = require('react');
+let ReactDOM = require('react-dom');
+let PropType = require('prop-types');
 
 require('./index.css');
 
-class Avatar extends React.Component {
-    render() {
-        return (
-            <img src={this.props.img} />
-        )
-    }
-}
+let App = require('./components/App');
 
-class Label extends React.Component {
-    render() {
-        return (
-            <h1>Name: {this.props.name}</h1>
-        )
-    }
-}
+ReactDOM.render(<App/>, document.getElementById('root'));
 
-class ScreenName extends React.Component {
-    render() {
-        return (
-            <h3>Username: {this.props.username}</h3>
-        )
-    }
-}
 
-class Badge extends React.Component {
-    render() {
-        return (
-            <div>
-                <Avatar img={this.props.user.img}/>
-                <Label name={this.props.user.name}/>
-                <ScreenName username={this.props.user.username}/>
-            </div>
-        )
-    }
-}
-
-ReactDOM.render(
-    <Badge user={{
-        name: 'Silva',
-        img: 'https://avatars0.githubusercontent.com/u/2933430?v=3&s=460',
-        username: 'htsilvakt04'
-    }} />,
-    document.getElementById('root')
-);

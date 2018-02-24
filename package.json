@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/htsilvakt04/React-Fundamental-Tyler-1#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "prop-types": "^15.6.0",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -33,6 +36,9 @@
     "webpack-dev-server": "^2.11.1"
   },
   "babel": {
-    "presets": ["env", "react"]
+    "presets": [
+      "env",
+      "react"
+    ]
   }
 }
