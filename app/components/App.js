@@ -4,8 +4,9 @@ let ReactRouter = require('react-router-dom');
 let Router = ReactRouter.BrowserRouter;
 let Route = ReactRouter.Route;
 let Home = require('./Home');
-let Navbar = require('./Nav');
+let Navbar = require('./Navbar');
 let Battle = require('./Battle');
+let Results = require('./Results');
 let Switch = ReactRouter.Switch;
 
 
@@ -19,6 +20,7 @@ class App extends React.Component {
                         <Route path='/' exact component={Home}/>
                         <Route path='/popular' component={Popular}/>
                         <Route exact path='/battle' component={Battle}/>
+                        <Route path='/battle/results' component={Results}/>
                         <Route render={function () {
                             return <h1>404</h1>;
                         }}/>

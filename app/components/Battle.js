@@ -3,6 +3,7 @@ let PropTypes = require('prop-types');
 let BattleForm = require('./BattleForm');
 let api = require('../utils/api');
 let PlayerReview = require('./PlayerReview');
+let Link = require('react-router-dom').Link;
 
 class Battle extends React.Component {
     constructor(props) {
@@ -16,8 +17,13 @@ class Battle extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleReset = this.handleReset.bind(this);
     }
-    handleReset () {
-        console.log('handle reset function');
+    handleReset (id, event) {
+        this.setState(() => {
+            let newState = {};
+            newState[id + 'Name'] = '';
+            newState[id + 'Img'] = null;
+            return newState;
+        });
     }
     handleSubmit (id, username) {
         this.setState(() => {
@@ -29,6 +35,9 @@ class Battle extends React.Component {
     }
 
     render () {
+        // current url come from the Router
+        let matchUrl = this.props.match.url;
+
         let playerOneName = this.state.playerOneName;
         let playerOneImg = this.state.playerOneImg;
 
@@ -41,15 +50,19 @@ class Battle extends React.Component {
                     {!playerOneName &&
                         <BattleForm id='playerOne' label='Player One' onSubmit={this.handleSubmit}/>}
                     {playerOneImg !== null &&
-                        <PlayerReview id={'playerOne'} avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} />
-                    }
+                        <PlayerReview id={'playerOne'} avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} />}
 
                     {!playerTwoName &&
                         <BattleForm id='playerTwo' label='Player Two' onSubmit={this.handleSubmit}/>}
                     {playerTwoImg !== null &&
-                    <PlayerReview id={'playerTwo'} avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} />
-                    }
+                        <PlayerReview id={'playerTwo'} avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} />}
                 </div>
+                {playerOneImg && playerTwoImg &&
+                    <Link className='button' to={{
+                        pathname: matchUrl + '/results',
+                        search: `?playerOneName=` + playerOneName + '&playerTwoName=' + playerTwoName
+                    }}>Battle</Link>
+                }
             </div>
         );
     }
