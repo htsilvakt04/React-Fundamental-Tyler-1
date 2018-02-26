@@ -3,11 +3,11 @@ let param = 'client_id=46641076941ca494908d&client_secret=6a805d0abd33ed3f74cc9f
 
 
 function getProfile (username) {
-    return axios.get('https://api.github.com/user/' + username + '?' + param)
+    return axios.get('https://api.github.com/users/' + username + '?' + param)
         .then(user => user.data);
 }
 function getRepos (username) {
-    return axios.get('https://api.github.com/' + username + '/repos' + '?' + 'per_page=100&' + param)
+    return axios.get('https://api.github.com/users/' + username + '/repos' + '?' + 'per_page=100&' + param)
         .then(repo => repo.data);
 }
 function getStartCount (repos) {
@@ -34,10 +34,9 @@ function getUserData (playerName) {
         getRepos(playerName)
     ]).then(data => {
         let profile = data[0];
-
         return {
             profile: profile,
-            score: calculateScore().apply(null, data)
+            score: calculateScore.apply(null, data)
         }
     });
 }

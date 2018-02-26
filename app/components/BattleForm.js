@@ -11,6 +11,7 @@ class BattleForm extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
     handleChange (event) {
         let value = event.target.value;
         this.setState({

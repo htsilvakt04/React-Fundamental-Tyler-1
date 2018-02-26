@@ -1,7 +1,7 @@
 let PropTypes = require('prop-types');
 let React = require('react');
 
-function PlayerReview (props) {
+const PlayerReview = (props) => {
     return (
         <div>
             <div className='column'>
@@ -11,7 +11,7 @@ function PlayerReview (props) {
             <button onClick={props.onReset.bind(null,  props.id)} className='reset'>Reset</button>
         </div>
     );
-}
+};
 
 PlayerReview.propTypes = {
     avatar: PropTypes.string.isRequired,
