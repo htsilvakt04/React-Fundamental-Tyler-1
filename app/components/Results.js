@@ -4,7 +4,7 @@ let api = require('../utils/api');
 let PropTypes = require('prop-types');
 let Link = require('react-router-dom').Link;
 let DisplayPlayerInfo = require('./DisplayPlayerInfo');
-
+let Loading = require('./Loading');
 class Results extends React.Component {
     constructor(props) {
         super(props);
@@ -51,7 +51,7 @@ class Results extends React.Component {
         let loading = this.state.loading;
 
         if (loading || error) {
-            return loading ? (<li>Loading...</li>) : (<p>{this.state.error}</p>);
+            return loading ? <Loading/> : (<p>{this.state.error}</p>);
         }
         return (
             <div className='row'>

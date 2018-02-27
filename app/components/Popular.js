@@ -2,6 +2,7 @@ let React = require('react');
 let SelectLanguage = require('./SelectLanguage');
 let RepoGrid = require('./RepoGrid');
 let api = require('../utils/api');
+let Loading = require('./Loading');
 
 class Popular extends React.Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class Popular extends React.Component {
             <div>
                 <SelectLanguage selectedLanguage={this.state.selectedLanguage} onClick={this.updateLang}/>
                 {!this.state.repos
-                    ? <p className='loading'>Loading...</p>
+                    ? <Loading/>
                     : <RepoGrid repos={this.state.repos} />
                 }
             </div>
