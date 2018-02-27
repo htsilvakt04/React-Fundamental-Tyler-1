@@ -55,7 +55,7 @@ class Results extends React.Component {
         }
         return (
             <div className='row'>
-                <DisplayPlayerInfo label='Winner' score={winner.score} profile={winner.profile}/>
+                <DisplayPlayerInfo score={winner.score} profile={winner.profile}/>
                 <DisplayPlayerInfo label='Loser' score={loser.score} profile={loser.profile}/>
             </div>
         );

@@ -5,7 +5,7 @@ function Navbar () {
     return (
         <ul className='nav'>
             <li>
-                <NavLink exact activeClassName='active' to='/'>Home</NavLink>
+                <NavLink exact activeClassName='active'>Home</NavLink>
             </li>
             <li>
                 <NavLink activeClassName='active' to='/battle'>Battle</NavLink>
@@ -17,4 +17,7 @@ function Navbar () {
     )
 }
 
+NavLink.defaultProps = {
+    to: '/'
+};
 module.exports = Navbar;

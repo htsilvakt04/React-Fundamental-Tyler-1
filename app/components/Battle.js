@@ -18,6 +18,8 @@ class Battle extends React.Component {
         this.handleReset = this.handleReset.bind(this);
     }
     handleReset (id, event) {
+        console.log('xxx',id);
+
         this.setState(() => {
             let newState = {};
             newState[id + 'Name'] = '';
@@ -50,12 +52,16 @@ class Battle extends React.Component {
                     {!playerOneName &&
                         <BattleForm id='playerOne' label='Player One' onSubmit={this.handleSubmit}/>}
                     {playerOneImg !== null &&
-                        <PlayerReview id={'playerOne'} avatar={playerOneImg} username={playerOneName} onReset={this.handleReset} />}
+                    <PlayerReview avatar={playerOneImg} username={playerOneName}>
+                        <button onClick={this.handleReset.bind(null, 'playerOne')} className='reset'>Reset</button>
+                    </PlayerReview>}
 
                     {!playerTwoName &&
                         <BattleForm id='playerTwo' label='Player Two' onSubmit={this.handleSubmit}/>}
                     {playerTwoImg !== null &&
-                        <PlayerReview id={'playerTwo'} avatar={playerTwoImg} username={playerTwoName} onReset={this.handleReset} />}
+                        <PlayerReview avatar={playerTwoImg} username={playerTwoName}>
+                            <button onClick={this.handleReset.bind(null, 'playerTwo')} className='reset'>Reset</button>
+                        </PlayerReview>}
                 </div>
                 {playerOneImg && playerTwoImg &&
                     <Link className='button' to={{

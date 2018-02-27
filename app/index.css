@@ -144,3 +144,13 @@ a {
 .reset:hover {
     cursor: pointer;
 }
+.avatar {
+    width: 150px;
+    border-radius: 50%;
+}
+.score {
+    text-align: center;
+}
+.space-list-items {
+    text-align: center;
+}
